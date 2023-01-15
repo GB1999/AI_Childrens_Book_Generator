@@ -9,4 +9,5 @@ from story_generator import StoryGenerator
 if __name__ == '__main__':
  sg = StoryGenerator("config.json")
  sg.pick_story()
+ sg.visualize_story()
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
