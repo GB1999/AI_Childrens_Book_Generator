@@ -47,9 +47,12 @@ class StoryGenerator:
         story_ideas_stripped = story_ideas[story_ideas.index('['):]
         print(story_ideas_stripped)
         story_ideas_json = json.loads(story_ideas_stripped)
-        self._story = story_ideas_json[random.randint(0,4)]
 
-        self._story["text"] = self.text_gen(prompt = "Write a children's story about " + self._story["Description"] + "Separate each scene. Your response should be in unformatted JSON" + "\n" , prefix="""[{ "Scene 1" : """, max_tokens=2048)
+        # assumes story ideas follows {title:"", description:""} structure
+        self._story = story_ideas_json[random.randint(0,4)]
+        os.mkdir(os.getcwd() + "/" + self._story["Title"].replace(" ", "_"))
+
+        self._story["text"] = self.text_gen(prompt = "Write a children's story about " + self._story["Description"] + "Separate each scene. Your response should be in unformatted JSON" + "\n" , prefix="""[{ "Scene_1" : """, max_tokens=2048)
 
         print(self._story["text"])
         scenes_json = json.loads(self._story["text"])
@@ -57,7 +60,7 @@ class StoryGenerator:
 
         print(scenes_json)
 
-        self._story["scenes"] = {}
+        self._story["Scenes"] = {}
         for key in scenes_json.keys():
             self._story["Scenes"][key] = {"Text": scenes_json[key]}
 
@@ -66,7 +69,7 @@ class StoryGenerator:
     def visualize_story(self):
         descriptions = self.text_gen(self._story["text"] + "\n" +
                             "For each scene in the story, give an visual description without names or context. Your response should be in unformatted JSON" + "\n"
-                            , prefix="""[{ "Scene 1" : """,  max_tokens=3500 )
+                            , prefix="""[{ "Scene_1" : """,  max_tokens=3500 )
 
         descriptions_json = json.loads(descriptions)
         descriptions_json = dict(ChainMap(*descriptions_json))
@@ -74,7 +77,7 @@ class StoryGenerator:
             self._story["Scenes"][key]["Description"] = descriptions_json[key]
 
         for key in self._story["Scenes"].keys():
-            self.image_gen(prompt=self._story["Scenes"][key]["Description"], file_name=key)
+            self.image_gen(prompt=self._story["Scenes"][key]["Description"] + ",watercolor, storybook, illustration", file_name= self._story["Title"].replace(" ", "_") + "/" + key)
         print(self._story)
 
 
@@ -90,7 +93,6 @@ class StoryGenerator:
             frequency_penalty=0.5,
             presence_penalty=0
         )
-        raw_response = response['choices'][0]['text']
 
         if linebreak:
             return prefix + response['choices'][0]['text']
@@ -102,7 +104,7 @@ class StoryGenerator:
             response = openai.Image.create(
                 prompt=prompt,
                 n=1,
-                size="1024x1024",
+                size="512x512",
                 response_format="b64_json"
             )
 
@@ -113,6 +115,6 @@ class StoryGenerator:
             print(e.http_status)
 
     def save_image(self, b64_str, file_name):
-        with open(file_name + "png", "wb") as fh:
+        with open(file_name + ".png", "wb") as fh:
             fh.write(base64.decodebytes(b64_str))
 
