@@ -60,7 +60,6 @@ class GPT:
         print("check")
         time.sleep(10)
 
-
     def login(self):
         wait = WebDriverWait(self._driver, 100)
         short_wait = WebDriverWait(self._driver, 5)
@@ -81,3 +80,6 @@ class GPT:
         google_login = wait.until(EC.element_to_be_clickable((By.XPATH, '//button[@ndata-provider="google"]')))
         google_login.click()
 
+
+chatGPT = GPT('config.json')
+chatGPT.login()
