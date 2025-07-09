@@ -1,84 +1,100 @@
-📚 AI Storybook Generator
-A personal project showcasing the creative potential of generative AI to produce illustrated storybooks, complete with AI-generated text, images, audio, and video. This project brings together multiple AI models into a cohesive storytelling pipeline.
+Here’s your `README.md` rewritten using proper Markdown formatting and conventions:
 
-🎥 Watch the development journey: YouTube Video
+```markdown
+# 📚 GENAI Storybook Generator
 
-🧠 What It Does
-This project generates a short illustrated story using:
+A personal project to showcase the creative potential of generative AI through the production of **illustrated storybooks** with AI-generated **text, images, narration, and video**.
 
-✍️ Text generation (e.g. via OpenAI or HuggingFace models)
+🎥 **Watch the development video**: [https://www.youtube.com/watch?v=-J7iqhTrEvA&ab_channel=Epoch](https://www.youtube.com/watch?v=-J7iqhTrEvA&ab_channel=Epoch)
 
-🎨 AI-generated images per scene
+---
 
-🔊 Voice-over narration using text-to-speech
+## ✨ Features
 
-📹 Automated video assembly that brings the book to life
+- ✍️ **Text Generation** using transformer models
+- 🎨 **Image Generation** for each scene
+- 🔊 **Audio Narration** using text-to-speech (Tortoise TTS)
+- 📹 **Video Compilation** combining scenes and audio
 
-Each story is saved in a structured folder with:
+---
 
-Generated text (JSON format)
+## 📁 Project Structure
 
-Scene images
+```
 
-Audio clips
-
-Final assembled video
-
-🗂 Project Structure
-graphql
-Copy
-Edit
 bookGenerator-master/
 │
-├── main.py                 # Entry point: runs story, image, and video generation
-├── story_generator.py      # Handles story creation and structure
-├── audio_generator.py      # Uses TTS to narrate scenes
-├── video_generator.py      # Assembles scenes, audio, and visuals into a video
-├── imageToSave.png         # Example image output
-├── config.json             # Configuration for story themes and paths
-├── .idea/                  # Project metadata (IDE-specific)
-└── README.md               # ← You’re here!
-🛠️ Requirements
-Python 3.8+
+├── main.py                 # Entry point for full pipeline
+├── story\_generator.py      # Handles text and structure generation
+├── audio\_generator.py      # Text-to-speech narration
+├── video\_generator.py      # Assembles video from story assets
+├── config.json             # Configuration for generation
+├── imageToSave.png         # Sample image output
+├── .gitignore              # Git exclusions
+├── .idea/                  # IDE metadata
 
-torch, torchaudio
+````
 
-transformers
+---
 
-Tortoise TTS
+## 🧠 How It Works
 
-FFmpeg (for video generation)
+1. **Generate a story** using `story_generator.py`
+2. **Create scene images** for story text
+3. **Narrate story** using Tortoise TTS via `audio_generator.py`
+4. **Compile into video** using `video_generator.py`
 
-To install dependencies:
+All generated assets (text, images, audio, video) are saved in a structured output directory.
 
-bash
-Copy
-Edit
+---
+
+## 🛠 Installation
+
+```bash
+git clone https://github.com/yourusername/bookGenerator.git
+cd bookGenerator
 pip install torch torchaudio transformers
-Install FFmpeg and ensure it’s in your system path.
+````
 
-🚀 Usage
-Clone the repo and extract:
+Make sure to install [FFmpeg](https://ffmpeg.org/download.html) and add it to your system path.
 
-bash
-Copy
-Edit
-unzip bookGenerator-master.zip
-cd bookGenerator-master
-Run the generator:
+---
 
-bash
-Copy
-Edit
+## 🚀 Usage
+
+```bash
 python main.py
-Outputs will be created under a /Stories/ folder with images, narration, and a video.
+```
 
-Note: Paths are currently hardcoded in main.py and may need to be adjusted based on your environment.
+Outputs will be created in a `/Stories/` folder, containing:
 
-🧪 Demo Output
-Here’s a preview of the end-to-end experience, showing AI generating a storybook from scratch and assembling it into video format:
+* 📜 Generated story text
+* 🖼 Scene illustrations
+* 🎧 Narrated audio
+* 🎞 Final video compilation
 
-📺 Watch here
+> 🔧 You may need to adjust file paths in `main.py` to match your local environment.
 
-✨ Why This Exists
-This project was built as a creative coding experiment to explore how far generative AI can go in telling stories. It demonstrates the pipeline from text → image → audio → video, using open-source models and tools.
+---
+
+## 📹 Demo Video
+
+See the full project walkthrough and results here:
+[![Watch on YouTube](https://img.youtube.com/vi/-J7iqhTrEvA/0.jpg)](https://www.youtube.com/watch?v=-J7iqhTrEvA&ab_channel=Epoch)
+
+---
+
+## 🧪 Purpose
+
+Created as a **Programming Paradigms final project** at **The University of Texas at Austin**, this project explores the intersection of creative storytelling and generative AI technologies. It is both a technical showcase and a creative experiment.
+
+---
+
+## 📬 Contact
+
+For questions, feel free to open an issue or reach out on [YouTube](https://www.youtube.com/channel/UCJYdYicg93L3B7hguMBe71Q).
+
+```
+
+Let me know if you’d like to include example outputs or screenshots.
+```
