@@ -1,4 +1,3 @@
-Here’s your `README.md` rewritten using proper Markdown formatting and conventions:
 
 ```markdown
 # 📚 GENAI Storybook Generator
@@ -90,11 +89,4 @@ Created as a **Programming Paradigms final project** at **The University of Texa
 
 ---
 
-## 📬 Contact
 
-For questions, feel free to open an issue or reach out on [YouTube](https://www.youtube.com/channel/UCJYdYicg93L3B7hguMBe71Q).
-
-```
-
-Let me know if you’d like to include example outputs or screenshots.
-```
